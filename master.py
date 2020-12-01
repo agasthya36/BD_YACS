@@ -29,12 +29,12 @@ class master:
 			# decoded_msg=msg.decode()
 			except:
 				break
-			r = connection.recv(1024)						
-			req = ""
-			while r:							
-				req += r.decode()
-				r = connection.recv(1024)
-			f2=json.loads(req)
+			msg= connection.recv(1024)						
+			decoded_msg = ""
+			while msg:							
+				decoded_msg += r.decode()
+				msg = connection.recv(1024)
+			f2=json.loads(decoded_msg)
 			print(f2)
 			connection.close()
 			# map_tasks1={}
@@ -164,13 +164,13 @@ class master:
 				break
 			received_msg=connection.recv(1024)
 			received_msg=received_msg.decode()
-			update = ""
-			while(len(received_msg)!=0):
-				update += received_msg
+			updated = ""
+			while(received_msg):
+				updated += received_msg
 				received_msg = connection.recv(1024).decode()
 		
 		
-			received_msg=json.loads(update)
+			received_msg=json.loads(updated)
 			print("rmsg",received_msg)
 			worker_id=received_msg["work_id"]
 			self.lock1.acquire()
