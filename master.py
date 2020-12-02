@@ -32,7 +32,7 @@ class master:
 			msg= connection.recv(1024)						
 			decoded_msg = ""
 			while msg:							
-				decoded_msg += r.decode()
+				decoded_msg += msg.decode()
 				msg = connection.recv(1024)
 			f2=json.loads(decoded_msg)
 			print(f2)
